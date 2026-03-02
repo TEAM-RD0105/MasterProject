@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Info File="MasterModel/RD0105FirmwareModel.mdl" GroupUUID="" Icon="" Name="RD0105FirmwareModel" Type="StartUp" Visible="0">
+    <Extension Name="StartUpPrev" Value="1d163bf2-d68c-480a-b7e0-220c9a8961b0"/>
+</Info>
