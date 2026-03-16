@@ -224,7 +224,7 @@
                                 useByScannerDiscovery="false"
                                 valueType="definedSymbols">
                            <listOptionValue builtIn="false" value="MODEL=RD0105FirmwareModel"/>
-                           <listOptionValue builtIn="false" value="NUMST=1"/>
+                           <listOptionValue builtIn="false" value="NUMST=2"/>
                            <listOptionValue builtIn="false" value="NCSTATES=0"/>
                            <listOptionValue builtIn="false" value="HAVESTDIO"/>
                            <listOptionValue builtIn="false" value="MODEL_HAS_DYNAMICALLY_LOADED_SFCNS=0"/>
@@ -237,7 +237,7 @@
                            <listOptionValue builtIn="false" value="MAT_FILE=0"/>
                            <listOptionValue builtIn="false" value="MULTI_INSTANCE_CODE=0"/>
                            <listOptionValue builtIn="false" value="INTEGER_CODE=0"/>
-                           <listOptionValue builtIn="false" value="MT=0"/>
+                           <listOptionValue builtIn="false" value="MT=1"/>
                            <listOptionValue builtIn="false" value="STACK_SIZE=64"/>
                            <listOptionValue builtIn="false" value="__MW_TARGET_USE_HARDWARE_RESOURCES_H__"/>
                            <listOptionValue builtIn="false" value="RT"/>
