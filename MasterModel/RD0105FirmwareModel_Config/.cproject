@@ -1313,7 +1313,7 @@
                          kind="sourcePath"
                          name="generate"/>
                   <entry flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
-                  <entry excluding="tlc|tmwinternal" flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED"
+                  <entry excluding="tmwinternal" flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED"
                          kind="sourcePath"
                          name="RD0105FirmwareModel_ert_rtw"/>
                   <entry excluding="RD0105FirmwareModel_Config|TLE92466_VFS.c|TLE92466_VFS_CH.c"

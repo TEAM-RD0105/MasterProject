@@ -19,26 +19,42 @@
 % development and simulation
 
 clc
+
 root = fileparts(mfilename("fullpath"));
 
-genRoot   = fullfile(root, "GeneratedFiles");
-cacheRoot = fullfile(genRoot, "Cache");
-codeRoot  = fullfile(genRoot, "CodeGen");
+genRoot   = fullfile(root,"GeneratedFiles");
+cacheRoot = fullfile(genRoot,"Cache");
+codeRoot  = fullfile(genRoot,"CodeGen");
 
 Simulink.fileGenControl("set", ...
-    "CacheFolder",  cacheRoot, ...
-    "CodeGenFolder", codeRoot, ...
-    "createDir", true);
+    "CacheFolder",cacheRoot, ...
+    "CodeGenFolder",codeRoot, ...
+    "createDir",true);
+
+exclude = ["GeneratedFiles","slprj","_sfprj","_jitprj","tmwinternal", ...
+           "ert_rtw","_ert_rtw","codegen",".git","DerivedDataCache"];
 
 p = split(string(genpath(root)), pathsep);
 p = p(p ~= "");
-
-exclude = ["GeneratedFiles","slprj","_sfprj","_jitprj","tmwinternal","ert_rtw","_ert_rtw"];
 p = p(~contains(p, exclude, "IgnoreCase", true));
+p = unique(p, "stable");
 
 addpath(strjoin(p, pathsep));
-clc
 
-clear root genRoot cacheRoot codeRoot p exclude
+c = dir(fullfile(root,"**","*.c"));
+keep = ~contains(string({c.folder}), exclude, "IgnoreCase", true);
+c = c(keep);
+
+names = string({c.name});
+[unq,~,idx] = unique(lower(names));
+counts = accumarray(idx,1);
+dup = unq(counts > 1);
+
+if ~isempty(dup)
+    warning("Duplicate .c filenames found under repo outside generated folders: %s", ...
+        strjoin(dup(1:min(end,10)), ", "));
+end
+
+clear root genRoot cacheRoot codeRoot exclude p c keep names unq idx counts dup
 
 % End
