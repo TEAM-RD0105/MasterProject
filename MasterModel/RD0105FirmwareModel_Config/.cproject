@@ -1316,7 +1316,7 @@
                   <entry excluding="tlc|tmwinternal" flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED"
                          kind="sourcePath"
                          name="RD0105FirmwareModel_ert_rtw"/>
-                  <entry excluding="RD0105FirmwareModel_Config|TLE92466_VFS.c|TLE92466_VFS_CH.c"
+                  <entry excluding="RD0105FirmwareModel_Config|TLE92466_VFS.c|TLE92466_VFS_CH.c|TLE92466_VFS_CH_wrapper_optimized.c|TLE92466_VFS_wrapper_optimized.c|tle92466_control_optimized.c"
                          flags="LOCAL|VALUE_WORKSPACE_PATH|RESOLVED"
                          kind="sourcePath"
                          name="MasterModel"/>

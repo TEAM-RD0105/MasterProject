@@ -60,7 +60,7 @@ uint32_t TLE92466_GetReg(uint16_t Address, uint32_t *data){
     snd_msg = ((crc<<24)|snd_msg);
     uint32_t recv_msg = 0; 
 #ifndef MATLAB_MEX_FILE
-    *data = TLE92466ED_SPI_Transmit(snd_msg);  //1st send;
+    // *data = TLE92466ED_SPI_Transmit(snd_msg);  //1st send;
     *data = TLE92466ED_SPI_Transmit(snd_msg);  //recv_msg;
 #endif      
       return recv_msg;
@@ -78,11 +78,9 @@ uint32_t TLE92466ED_SPI_Transmit(uint32_t frame) {
     tx_buf[0] = frame & 0xFF;
 #ifndef MATLAB_MEX_FILE
     Spi_WriteIB(SpiConf_SpiChannel_SpiChannel_0, tx_buf);
-     if (Spi_SyncTransmit(SpiConf_SpiSequence_SpiSequence_0) != E_OK) {
+    if (Spi_SyncTransmit(SpiConf_SpiSequence_SpiSequence_0) != E_OK) {
         return 0xFFFFFFFF;
-     }
-
-    while (Spi_GetSequenceResult(SpiConf_SpiSequence_SpiSequence_0) == SPI_SEQ_PENDING);
+    }
     Spi_ReadIB(SpiConf_SpiChannel_SpiChannel_0, rx_buf);
 #endif
 

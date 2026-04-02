@@ -164,7 +164,7 @@ const Lpspi_Ip_ExternalDeviceType Lpspi_Ip_DeviceAttributes_SpiExternalDevice_0_
     2U,  /* Instance */
     (uint32)(LPSPI_CFGR0_HRDIR(0U) | LPSPI_CFGR0_HREN(0U) |
              LPSPI_CFGR0_HRSEL(0U) | LPSPI_CFGR0_HRPOL(0U)), /* CFGR0 */
-        (uint32)(LPSPI_CCR_SCKPCS(7U) | LPSPI_CCR_PCSSCK(7U) | LPSPI_CCR_SCKDIV(38U) | LPSPI_CCR_DBT(14U)), /* ccr */
+        (uint32)(LPSPI_CCR_SCKPCS(7U) | LPSPI_CCR_PCSSCK(7U) | LPSPI_CCR_SCKDIV(3U) | LPSPI_CCR_DBT(14U)), /* ccr */
         (uint32)(LPSPI_TCR_WIDTH(0U) | LPSPI_TCR_CPOL(0U) | LPSPI_TCR_CPHA(1U) | LPSPI_TCR_PRESCALE(0U) | LPSPI_TCR_PCS(0U) | LPSPI_TCR_CONT(1U)) /* TCR */
 
 

@@ -18,7 +18,7 @@ uint32_t glob_status;
  * This aligns with the TLE92466ED's channel address scheme (Table 66+).
  *
  * Parameters:
- *   ch     - Channel index (0–5)
+ *   ch     - Channel index (0-5)
  *   offset - Register offset (e.g., SETPOINT_ADDR, MODE_ADDR)
  *
  * Returns:
@@ -88,15 +88,15 @@ void TLE92466_Init_Device(void)
 	TLE92466_Set_DIAG_WARN_CHGR1(0x0000);
 
 	// FAULT_MASK0:
-	// Enable fault indication for channels 0–5 (OLSG, OL, SG, OC, OTE)
+	// Enable fault indication for channels 0-5 (OLSG, OL, SG, OC, OTE)
 	TLE92466_Set_FAULT_MASK0(0x003F);
 
 	// FAULT_MASK1:
-	// Enable warning indication for channels 0–5 (PWM_REG_WARN, I_REG_WARN, OTW, OLSG_WARN)
+	// Enable warning indication for channels 0-5 (PWM_REG_WARN, I_REG_WARN, OTW, OLSG_WARN)
 	TLE92466_Set_FAULT_MASK1(0x003F);
 
 	// FAULT_MASK2:
-	// Mask all other faults (SPI watchdog, data error) — not needed during debugging
+	// Mask all other faults (SPI watchdog, data error) - not needed during debugging
 	TLE92466_Set_FAULT_MASK2(0x0000);
 
 	// Watchdog reload (not needed for debugging, but safe to set)
@@ -106,7 +106,6 @@ void TLE92466_Init_Device(void)
 	// since the CLK pin is grounded,
 	// the TLE92466ED uses its internal oscillator,
 	// and the system clock (f_SYS) is automatically set to approximately 28 MHz.
-
 }
 
 /*******************************************************************************
@@ -119,7 +118,7 @@ void TLE92466_Init_Device(void)
  *   - Uses bitwise operations to modify a single channel without affecting others.
  *
  * Parameters:
- *   ch     - Channel index (0–5)
+ *   ch     - Channel index (0-5)
  *   enable - 1 to enable, 0 to disable
  ******************************************************************************/
 void TLE92466_Control_CH(uint8_t ch, uint8_t enable) {
@@ -148,7 +147,7 @@ TLE92466_ChannelDiagnostics TLE92466_ReportChannelDiagnostics__OLD(uint8_t chann
     TLE92466_ChannelDiagnostics diag;
     diag.channel_id = channel;
 
-    // Error register (DIAG_ERR_CHGR0 covers channels 0–1)
+    // Error register (DIAG_ERR_CHGR0 covers channels 0-1)
     uint16_t err = TLE92466_Get_DIAG_ERR_CHGR0();
     uint8_t shift = channel * 5;
 
@@ -158,7 +157,7 @@ TLE92466_ChannelDiagnostics TLE92466_ReportChannelDiagnostics__OLD(uint8_t chann
     diag.error_SG   = (err >> (shift + 3)) & 0x01;
     diag.error_OTE  = (err >> (shift + 4)) & 0x01;
 
-    // Warning register (DIAG_WARN_CHGR0 covers channels 0–1)
+    // Warning register (DIAG_WARN_CHGR0 covers channels 0-1)
     uint16_t warn = TLE92466_Get_DIAG_WARN_CHGR0();
     diag.warn_PWM_REG     = (warn >> (channel * 5 + 0)) & 0x01;
     diag.warn_I_REG       = (warn >> (channel * 5 + 1)) & 0x01;
@@ -171,17 +170,17 @@ TLE92466_ChannelDiagnostics TLE92466_ReportChannelDiagnostics__OLD(uint8_t chann
 uint16_t TLE92466_ReportChannelDiagnostics__OLD_CH0(uint8_t channel) {
     uint16_t result = 0;
 
-    // Error register (DIAG_ERR_CHGR0 covers channels 0–1)
+    // Error register (DIAG_ERR_CHGR0 covers channels 0-1)
     uint16_t err = TLE92466_Get_DIAG_ERR_CHGR0();
     uint8_t shift = channel * 5;
 
-    // Bits 0–4: Error flags
+    // Bits 0-4: Error flags
     result |= ((err >> shift) & 0x1F); // OLSG, OL, OC, SG, OTE
 
-    // Warning register (DIAG_WARN_CHGR0 covers channels 0–1)
+    // Warning register (DIAG_WARN_CHGR0 covers channels 0-1)
     uint16_t warn = TLE92466_Get_DIAG_WARN_CHGR0();
 
-    // Bits 8–11: Warning flags
+    // Bits 8-11: Warning flags
     result |= (((warn >> shift) & 0x0F) << 8); // PWM_REG, I_REG, OTW, OLSG_WARN
 
     return result;
@@ -206,10 +205,10 @@ uint16_t TLE92466_ReportChannelDiagnostics(uint8_t channel) {
         warn = TLE92466_Get_DIAG_WARN_CHGR2();
     }
 
-    // Bits 0–4: Error flags
+    // Bits 0-4: Error flags
     result |= ((err >> shift) & 0x1F); // OLSG, OL, OC, SG, OTE
 
-    // Bits 8–11: Warning flags
+    // Bits 8-11: Warning flags
     result |= (((warn >> shift) & 0x0F) << 8); // PWM_REG, I_REG, OTW, OLSG_WARN
 
     return result;
@@ -680,6 +679,3 @@ uint32_t TLE92466_Get_FB_PERIOD_MIN_MAX(uint8_t Channel){
     glob_status = TLE92466_GetReg(FB_PERIOD_MIN_MAX_ADDRS, &data);
     return data;
 }
-
-
-
